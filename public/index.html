@@ -13,7 +13,8 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -268,6 +269,7 @@
                         zoom: 11,
                         center: {lat: 33.645072, lng: -117.835021}
                     });
+                    console.log("inside initmap");
 
 
                     infoWindow = new google.maps.InfoWindow;
@@ -345,7 +347,7 @@
                     }
                 }
 
-                var image = 'markerU.png';
+                var image = '/assets/img/markerU.png';
 
                 function addMarkerWithTimeout(position, timeout) {
                     window.setTimeout(function() {
@@ -358,13 +360,13 @@
                     }, timeout);
                 }
 
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<h2> User Post </h2>'
-                });
-                markers.addListener('click', function () {
-                    infoWindow.open(map, markers)
+               // var infoWindow = new google.maps.InfoWindow({
+                //    content: '<h2> User Post </h2>'
+               // });
+               // markers.addListener('click', function () {
+                 //   infoWindow.open(map, markers)
 
-                });
+                //});
 
                 function clearMarkers() {
                     for (var i = 0; i < markers.length; i++) {
