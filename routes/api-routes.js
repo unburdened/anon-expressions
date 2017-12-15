@@ -25,19 +25,19 @@ module.exports = function(app) {
   });
 
   // GET rotue for retrieving expressions in current map view
-  app.get("/api/expression/:latNW/:longNW/:latSE/:longSE", function(req, res) {
+  app.get("/api/expression/:latNW/:lngNW/:latSE/:lngSE", function(req, res) {
     db.Expression.findAll({
       where: {
         lat: { [Op.between]: [req.params.latSE, req.params.latNW] },
-        long: { [Op.between]: [req.params.longNW, req.params.longSE] }
+        lng: { [Op.between]: [req.params.lngNW, req.params.lngSE] }
       }
     }).then(function(dbExp) {
       res.json(dbExp);
     });
   });
 
-  // POST route for creating a new expression
-  app.post("/api/expression", function(req, res) {
+  // POST route for generating a new user
+  app.post("/api/user", function(req, res) {
     const dwOptions = {
       language: enEFF,
       wordcount: 3,
@@ -48,41 +48,49 @@ module.exports = function(app) {
     const username = tmp.replace(/\s+/g, "-");
     console.log(tmp);
 
-    var pin = Math.floor(Math.random() * 9998) + 1;
+    var pin = Math.floor(Math.random() * 8999) + 1000;
+
+    const hash = hasha(username, { algorithm: "md5" });
+    console.log(hash);
+
+    var r = Math.floor(Math.random() * 254) + 1;
+    var g = Math.floor(Math.random() * 254) + 1;
+    var b = Math.floor(Math.random() * 254) + 1;
+
+    var identOptions = {
+      foreground: [r, g, b, 255], // rgba black
+      background: [255, 255, 255, 255], // rgba white
+      margin: 0.1, // 10% margin
+      size: 24, // 24px square
+      format: "png" // use PNG
+    };
+
+    var newProperty = "indenticon";
+    var newIdenticon = new Identicon(hash, identOptions).toString();
+    // console.log(data);
 
     db.User.create({
       id: username,
       pin: pin
-    }).then(function() {
-      db.Expression.create({
-        message: req.body.message,
-        lat: req.body.lat,
-        long: req.body.long,
-        UserId: username
-      }).then(function(dbExp) {
-        res.json(dbExp);
-      });
+    }).then(function(dbExp) {
+      dbExp.dataValues[newProperty] = newIdenticon;
+      console.log(dbExp);
+      res.json(dbExp);
     });
-
-    // const hash = hasha(username, { algorithm: "md5" });
-    // console.log(hash);
-
-    // var options2 = {
-    //   foreground: [0, 0, 0, 255], // rgba black
-    //   background: [255, 255, 255, 255], // rgba white
-    //   margin: 0.1, // 10% margin
-    //   size: 24, // 420px square
-    //   format: "png" // use SVG instead of PNG
-    // };
-
-    // // create a base64 encoded SVG
-    // var data = new Identicon(hash, options2).toString();
-    // console.log(data);
-
-    // db.Post.create(req.body).then(function(dbPost) {
-    //   res.json(dbPost);
   });
-  // });
+
+  // POST route for creating a new expression
+  app.post("/api/expression", function(req, res) {
+    console.log(req);
+    db.Expression.create({
+      message: req.body.message,
+      lat: req.body.lat,
+      lng: req.body.lng,
+      UserId: req.body.userId
+    }).then(function(dbExp) {
+      res.json(dbExp);
+    });
+  });
 
   // DELETE route for deleting posts
   app.delete("/api/epxression/:uuid", function(req, res) {
