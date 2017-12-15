@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     message: DataTypes.STRING,
     lat: DataTypes.DECIMAL(9, 6),
-    long: DataTypes.DECIMAL(9, 6)
+    lng: DataTypes.DECIMAL(9, 6)
   });
 
   Expression.associate = function(models) {
