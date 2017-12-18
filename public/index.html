@@ -28,7 +28,9 @@
     <![endif]-->
 </head>
 
+
 <body>
+
 
     <div class="container">
         <div class="header">
@@ -38,13 +40,16 @@
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#theStory">the Story</button>
 
 
+
                 </div>
                 <!-- / col-lg-12 -->
             </div>
             <!-- / row -->
+
         </div>
         <!-- / header -->
     </div>
+
     <!-- / container -->
     <div id="map"></div>
 
@@ -86,7 +91,25 @@
                     </div>
                 </div>
 
+
             </div>
+            <!-- / row -->
+            <form action="/action_page.php">
+              <div class="form-group">
+                <label for="expression">Express Yourself</label>
+                <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="what do you have to add?" name="expression"></textarea>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="accept"> I am not a robot, accecpt your
+                  <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
+              </div>
+              <button type="submit" class="btn btn-info">Reply</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
         <!-- / modal -->
     </div>
@@ -134,10 +157,90 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
 
+                </div>
+                <!-- / userTag -->
+              </div>
+            </div>
+            <!-- / row -->
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- expression text -->
+                <hr>
+                <p>
+                  so, on my way to school, i was merging onto the 405 from lake forest and i thought i was clear. i wasn’t. to the woman driving
+                  the white honda accord that swerved to avoid me, i am dreadfully sorry that i nearly plowed into you, you
+                  had every right to be livid
+                </p>
+                <p>
+                  <br />
+                </p>
+                <p>
+                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#reply">reply to author</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#addTo">add to expression</button>
+                </p>
+              </div>
+              <!-- / col-lg-12 -->
+            </div>
+            <!-- / row -->
+          </div>
+          <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
+
+      </div>
+      <!-- / modal -->
+
+    </div>
+  </div>
+  <div>
+    <!-- welcome Modal -->
+    <div class="modal fade" id="welcome" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Welcome to anon.Expressions</span>
+          </div>
+          <div class="modal-body">
+            <p>
+              Thanks for visiting, here's a few tips on getting started.
+            </p>
+            <p>
+              Using a handy Google map, we've made a location-based communication tool. You may also click somewhere on the map to start
+              your own expression.
+            </p>
+            <p>
+              Also, after this page goes away, you'll see a few swanky magenta markers with the letter "a" on it. If you click on one of
+              those markers, a new window will overlay and display an expression from the user that created the marker, along
+              with any additional expressions that have been added.
+            </p>
+            <p>
+              You may also add to any expression. If what you have to communicate is for the author's eyes only, we have a way for you
+              to reply to them.
+            </p>
+            <p>
+              And it's all anonymous. The system just recognizes you as a user and generates any identification necessary internally. Whatever
+              you post will become part of the system, unless the content doesn't make it through our comprehensive filters.
+            </p>
+            <p>
+              As far as content goes, a good guideline to follow would be to just pretend that your name, face and mobile number appears
+              on the expression. Or just think about what you're communicating and how it would affect you if you were the
+              subject.
+            </p>
+            <p>
+              So, enjoy! And please be pleasant, at least until you just can't hold back any longer.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
         <!-- / modal -->
     </div>
     <!-- reply Modal -->
