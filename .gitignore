@@ -1,0 +1,7 @@
+~$*
+/node_modules
+npm-debug.log
+heroku_db_info.txt
+yarn.lock
+.DS_Store
+/*.env
