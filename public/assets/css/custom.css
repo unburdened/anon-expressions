@@ -53,7 +53,6 @@ html {
 .btn-link {
     background: url(../img/bg_btn-link.png) left no-repeat;
     height: 30px;
-    width: 100px;
     font-size: 14px;
     margin: 38px 0 0 0;
     border: none;
@@ -167,9 +166,13 @@ html {
     color: #ffffff;    
 }
 
+.modal-body img {
+    border: 1px solid #bdc3c7;
+    margin: 0 0 10px 10px; 
+}
+
 .userTag {
-    display: inline-block;
-    padding: 6px 12px;
+    padding: 10px 6px 0 6px;
     margin: 0;
     font-size: 14px;
     font-weight: normal;
@@ -192,12 +195,12 @@ html {
 
 .identicon {
     float: right;
-    margin: 0 8px 0 0;
+    border: none;
 }
 
 .PIN {
-    margin: 3px 0 0 2px;
     color: #202020;
+    margin: 6px 0 0 4px;
     float: right;
     font-weight: 500;
     padding: 0;
@@ -205,7 +208,7 @@ html {
 
 .PIN-label {
     font-size: 11px;
-    margin: 6px 0 0 0;
+    margin: 9px 0 0 8px;
     color: #202020;
     float: right;
     font-weight: 300;
@@ -220,7 +223,7 @@ html {
     float: left;
     padding: 0;
     text-align: left;
-    margin: 8px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 label {

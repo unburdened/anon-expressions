@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-lg-12">
           <img class="logo" src="assets/img/logo.png">
-          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#theStory">the Story</button>
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#userReplies">You have a reply!</button>
 
 
         </div>
@@ -29,231 +29,493 @@
     <!-- / header -->
   </div>
   <!-- / container -->
+
+
   <div id="map"></div>
   <script>
+    var locations = [
+      { lat: 33.658676, lng: -117.865189 },
+      { lat: 33.631679, lng: -117.797173 },
+      { lat: 33.676562, lng: -117.743917 },
+      { lat: 33.652574, lng: -117.821889 },
+      { lat: 33.658618, lng: -117.851987 },
+      { lat: 33.631646, lng: -117.757172 },
+      { lat: 33.676577, lng: -117.768121 },
+      { lat: 33.652598, lng: -117.859182 }
+    ];
 
-    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-    // Australia.
+    var markers = [];
+    var map;
+
     function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: { lat: -33, lng: 151 }
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 11,
+        center: { lat: 33.645072, lng: -117.835021 }
       });
 
-      var image = 'img/markerU.png';
-      var beachMarker = new google.maps.Marker({
-        position: { lat: -33.890, lng: 151.274 },
-        map: map,
-        icon: image
+
+      infoWindow = new google.maps.InfoWindow;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('Your Location');
+          infoWindow.open(map);
+          map.setCenter(pos);
+          drop();
+        }, function () {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn’t support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+      // var eventlatLng;
+      google.maps.event.addListener(map, "click", function (event) {
+
+        //    if(event.latLng)    {
+        //      eventlatLng = event.latLng;
+        //     $(‘#dialog’).html(‘Add marker ?’);
+
+        //  }
+
+
+        $('.close').click(function () {
+          $('#post').modal();
+
+        });
+        // write create model from scratch
+        // make text button in the header nav bar to show
+        //then valiadate submit
+        //use z-index above map
+        //show and hide method based on click
+        //
+        placeMarker(event.latLng);
+
       });
+
+      function placeMarker(position) {
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          icon: image
+        });
+      }
+
+
     }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ?
+        "Error: The Geolocation service failed." :
+        "Error: Your browser doesn\‘t support geolocation.");
+      infoWindow.open(map);
+    }
+
+    function drop() {
+      clearMarkers();
+      for (var i = 0; i < locations.length; i++) {
+        addMarkerWithTimeout(locations[i], i * 300);
+        var markers = locations.map(function (position) {
+          return new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: image
+
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+          { imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m" });
+
+      }
+    }
+
+    var image = "assets/img/markerAE.png";
+
+    function addMarkerWithTimeout(position, timeout) {
+      window.setTimeout(function () {
+        markers.push(new google.maps.Marker({
+          position: position,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          icon: image
+        }));
+      }, timeout);
+    }
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: "<h2> User Post </h2>"
+    });
+    markers.addListener("click", function () {
+      infoWindow.open(map, markers)
+
+    });
+
+    function clearMarkers() {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
+    }
+
+    function addMarker(cords) {
+
+    }
+
+
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOha4e-4ZGQgbwEZyBEyx72jFhkF--oGg&callback=initMap">
   </script>
+
+
+
   <div class="container">
     <div class="footer">
       <div class="row">
         <div class="col-lg-12">
-          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#create">create</button>
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#add">add</button>
           <button type="button" class="btn btn-link" data-toggle="modal" data-target="#view">view</button>
-          <div class="terms">&#9400; anon.Expressions | <a href="terms.html" target="_new">Terms of Service</a></div>
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#welcome">welcome</button>
+          <div class="terms">&#9400; anon.Expressions |
+            <a href="#theStory" data-toggle="modal" data-target="#theStory">The Story</a> |
+            <a href="terms.html" target="_new">Terms of Service</a>
+          </div>
         </div>
         <!-- / col-lg-12 -->
       </div>
       <!-- / row -->
     </div>
     <!-- / footer -->
-    <!-- need div's bertween modals -->
-    <div>
-      <!-- Modal -->
-      <div class="modal fade" id="theStory" role="dialog">
-        <div class="modal-dialog">
+  </div>
+  <!-- / container -->
+  <!-- need div's bertween modals -->
+  <div>
+    <!-- Modal -->
+    <div class="modal fade" id="theStory" role="dialog">
+      <div class="modal-dialog">
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <span class="modal-title">the Story</span>
-            </div>
-            <div class="modal-body">
-              <p>Can you belive that these three dudes would make something as sweet as an anonymous, location-based text /
-                chat application?
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">The Story</span>
           </div>
+          <div class="modal-body">
+            <p>
+              <img src="assets/img/dce.jpg" align="right" alt="UCI Continuing Education" border="0"> It started out with one guy wanting to apologise for nearly causing a horrific accident on the 405 North on
+              his way to class. It morphed into a completely anonymous, location-based posting / messaging system. In other
+              words, a pretty typical Monday for the UCI coding bootcamp.
+            </p>
+            <p>
+              Brandon, Rudy and Chris, or the Brains, the Braun and the Looks, spent a little over a week designing and coding during class,
+              in the Anteater Pub in the afternoons and at home in the evenings. The crucial roles of caffiene and the chicken
+              tenders with fries basket in the project's completion cannot be overstated.
+            </p>
+            <p>
+              The idea behind our third class project is simply to provide a new way for people to connect. Most of what we learned in
+              the past few months was utilized, from getting what we needed from the Google API to setting up our data storage.
+              These projects just prepare us for what's next, but anon.Expressions is our latest.
+            </p>
+            <p>
+              So, enjoy! And please be pleasant, for the most part.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
 
+      </div>
+    </div>
+    <!-- / modal -->
+  </div>
+  <div>
+    <!-- add Modal -->
+    <div class="modal fade" id="add" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Add Expression</span>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- userTag -->
+                <div class="userTag">
+                  <div class="PIN">1234</div>
+                  <!-- PIN display -->
+                  <div class="PIN-label">PIN:</div>
+                  <div class="PIN">screaming_dog_tree</div>
+                  <!-- temp UN -->
+                  <div class="PIN-label">UN:</div>
+                  <!-- identicon display - swap out the image in this col-sm-1-->
+                  <img class="identicon" src="assets/img/identicon-01.png">
+                </div>
+                <!-- / userTag -->
+              </div>
+              <!-- / col-sm-12 -->
+            </div>
+            <!-- / row -->
+            <form action="/action_page.php">
+              <div class="form-group">
+                <label for="expression">express yourself</label>
+                <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="just let yourself go" name="expression"></textarea>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="accept"> I am not a robot, accecpt your
+                  <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
+              </div>
+              <button type="submit" class="btn btn-info">Go For It</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
       <!-- / modal -->
     </div>
-    <div>
-      <!-- create Modal -->
-      <div class="modal fade" id="create" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <span class="modal-title">create expression</span>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="userTag">
-                    <div class="PIN">1234</div>
-
-                    <!-- PIN display -->
-                    <div class="PIN-label">PIN:</div>
-                    <!-- identicon display - swap out the image in this col-sm-1-->
-                    <img class="identicon" src="assets/img/identicon-01.png">
-                  </div>
-                  <!-- / userTag -->
-                </div>
-                <!-- / col-sm-12 -->
-              </div>
-              <!-- / row -->
-              <form action="/action_page.php">
-                <div class="form-group">
-                  <label for="email">express yourself</label>
-                  <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="just let yourself go" name="expression"></textarea>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="accept"> I am not a robot, accecpt your
-                    <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
-                </div>
-                <button type="submit" class="btn btn-info">Go For It</button>
-              </form>
-
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+  </div>
+  <div>
+    <!-- reply Modal -->
+    <div class="modal fade" id="reply" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Reply to Author</span>
           </div>
-
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- userTag -->
+                <div class="userTag">
+                  <div class="PIN">1234</div>
+                  <!-- PIN display -->
+                  <div class="PIN-label">PIN:</div>
+                  <div class="PIN">screaming_dog_tree</div>
+                  <!-- temp UN -->
+                  <div class="PIN-label">UN:</div>
+                  <!-- identicon display - swap out the image in this col-sm-1-->
+                  <img class="identicon" src="assets/img/identicon-01.png">
+                </div>
+                <!-- / userTag -->
+              </div>
+              <!-- / col-sm-12 -->
+            </div>
+            <!-- / row -->
+            <form action="/action_page.php">
+              <div class="form-group">
+                <label for="expression">Express Yourself</label>
+                <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="what's on your mind?" name="expression"></textarea>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="accept"> I am not a robot, accecpt your
+                  <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
+              </div>
+              <button type="submit" class="btn btn-info">Reply</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-        <!-- / modal -->
       </div>
-      <div>
-        <!-- reply Modal -->
-        <div class="modal fade" id="reply" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <span class="modal-title">reply to author</span>
-              </div>
-              <div class="modal-body">
-                form jive to appear soon
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-
+      <!-- / modal -->
+    </div>
+  </div>
+  <div>
+    <!-- add to expression Modal -->
+    <div class="modal fade" id="addTo" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Add to Expression</span>
           </div>
-          <!-- / modal -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- userTag -->
+                <div class="userTag">
+                  <div class="PIN">1234</div>
+                  <!-- PIN display -->
+                  <div class="PIN-label">PIN:</div>
+                  <div class="PIN">screaming_dog_tree</div>
+                  <!-- temp UN -->
+                  <div class="PIN-label">UN:</div>
+                  <!-- identicon display - swap out the image in this col-sm-1-->
+                  <img class="identicon" src="assets/img/identicon-01.png">
+                </div>
+                <!-- / userTag -->
+              </div>
+              <!-- / col-sm-12 -->
+            </div>
+            <!-- / row -->
+            <form action="/action_page.php">
+              <div class="form-group">
+                <label for="expression">Express Yourself</label>
+                <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="what do you have to add?" name="expression"></textarea>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="accept"> I am not a robot, accecpt your
+                  <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
+              </div>
+              <button type="submit" class="btn btn-info">Reply</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-        <div>
-          <!-- add to expression Modal -->
-          <div class="modal fade" id="addTo" role="dialog">
-            <div class="modal-dialog">
+      </div>
+      <!-- / modal -->
+    </div>
+  </div>
+  <div>
+    <!-- view Modal -->
+    <div class="modal fade" id="view" role="dialog">
+      <div class="modal-dialog">
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <span class="modal-title">add to expression</span>
-                </div>
-                <div class="modal-body">
-                  form jive to appear soon
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-
-            </div>
-            <!-- / modal -->
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Expressions</span>
           </div>
-          <div>
-            <!-- create Modal -->
-            <div class="modal fade" id="view" role="dialog">
-              <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="modal-title">expressions</span>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-
-                      <div class="col-sm-8">
-                        <!-- timestamp -->
-                        <div class="timestamp">
-                          9:15 am
-                          <br /> mon sdec 04 2017
-                        </div>
-                        <!-- / timestamp -->
-                      </div>
-                      <!-- / col-sm-8 -->
-                      <div class="col-sm-4">
-                        <div class="userTag">
-                          <div class="PIN">1234</div>
-
-                          <!-- PIN display -->
-                          <div class="PIN-label">PIN:</div>
-                          <!-- identicon display - swap out the image in this col-sm-1-->
-                          <img class="identicon" src="assets/img/identicon-01.png">
-                        </div>
-                        <!-- / col-sm-4 -->
-                      </div>
-                      <!-- / userTag -->
-                    </div>
-                    <!-- / row -->
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <!-- expression text -->
-                        <hr>
-                        <p>
-                          so, on my way to school, i was merging onto the 405 from lake forest and i thought i was clear. i wasn’t. to the woman driving
-                          the white honda accord that swerved to avoid me, i am dreadfully sorry that i nearly plowed into
-                          you, you had every right to be livid
-                        </p>
-                        <p>
-                          <br />
-                        </p>
-                        <p>
-                          <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#reply">reply to author</button>
-                          <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#addTo">add to expression</button>
-                        </p>
-                      </div>
-                      <!-- / col-lg-12 -->
-                    </div>
-                    <!-- / row -->
-                  </div>
-                  <!-- modal-body -->
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <!-- timestamp -->
+                <div class="timestamp">
+                  9:15 am
+                  <br /> mon sdec 04 2017
                 </div>
-
+                <!-- / timestamp -->
               </div>
-              <!-- / modal -->
-
+              <!-- / col-sm-4 -->
+              <div class="col-sm-8">
+                <!-- userTag -->
+                <div class="userTag">
+                  <div class="PIN">1234</div>
+                  <!-- PIN display -->
+                  <div class="PIN-label">PIN:</div>
+                  <div class="PIN">screaming_dog_tree</div>
+                  <!-- temp UN -->
+                  <div class="PIN-label">UN:</div>
+                  <!-- identicon display - swap out the image in this col-sm-1-->
+                  <img class="identicon" src="assets/img/identicon-01.png">
+                </div>
+                <!-- / userTag -->
+              </div>
             </div>
+            <!-- / row -->
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- expression text -->
+                <hr>
+                <p>
+                  so, on my way to school, i was merging onto the 405 from lake forest and i thought i was clear. i wasn’t. to the woman driving
+                  the white honda accord that swerved to avoid me, i am dreadfully sorry that i nearly plowed into you, you
+                  had every right to be livid
+                </p>
+                <p>
+                  <br />
+                </p>
+                <p>
+                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#reply">reply to author</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#addTo">add to expression</button>
+                </p>
+              </div>
+              <!-- / col-lg-12 -->
+            </div>
+            <!-- / row -->
           </div>
-          <!-- / container -->
+          <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- / modal -->
+
+    </div>
+  </div>
+  <div>
+    <!-- welcome Modal -->
+    <div class="modal fade" id="welcome" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span class="modal-title">Welcome to anon.Expressions</span>
+          </div>
+          <div class="modal-body">
+            <p>
+              Thanks for visiting, here's a few tips on getting started.
+            </p>
+            <p>
+              Using a handy Google map, we've made a location-based communication tool. You may also click somewhere on the map to start
+              your own expression.
+            </p>
+            <p>
+              Also, after this page goes away, you'll see a few swanky magenta markers with the letter "a" on it. If you click on one of
+              those markers, a new window will overlay and display an expression from the user that created the marker, along
+              with any additional expressions that have been added.
+            </p>
+            <p>
+              You may also add to any expression. If what you have to communicate is for the author's eyes only, we have a way for you
+              to reply to them.
+            </p>
+            <p>
+              And it's all anonymous. The system just recognizes you as a user and generates any identification necessary internally. Whatever
+              you post will become part of the system, unless the content doesn't make it through our comprehensive filters.
+            </p>
+            <p>
+              As far as content goes, a good guideline to follow would be to just pretend that your name, face and mobile number appears
+              on the expression. Or just think about what you're communicating and how it would affect you if you were the
+              subject.
+            </p>
+            <p>
+              So, enjoy! And please be pleasant, at least until you just can't hold back any longer.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- / modal -->
+    </div>
+  </div>
+
+  <script src=“https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js“>
+  </script>
+  <script type="text/javascript">
+    $(window).ready(function () {
+      $('#welcome').modal('show');
+    });
+  </script>
 
 </body>
 
