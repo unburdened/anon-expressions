@@ -158,6 +158,15 @@ html {
   letter-spacing: 0.1em;
 }
 
+.modal-dialog {
+  overflow-y: initial;
+}
+
+.modal-body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 .close {
   color: #bdc3c7;
 }

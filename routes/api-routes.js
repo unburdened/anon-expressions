@@ -24,12 +24,48 @@ module.exports = function(app) {
     });
   });
 
-  // GET rotue for retrieving expressions in current map view
-  app.get("/api/expression/:latNW/:lngNW/:latSE/:lngSE", function(req, res) {
+  // GET route for retrieving expressions at a certain location
+  app.get("/api/expression/:lat/:lng", function(req, res) {
     db.Expression.findAll({
       where: {
-        lat: { [Op.between]: [req.params.latSE, req.params.latNW] },
-        lng: { [Op.between]: [req.params.lngNW, req.params.lngSE] }
+        lat: req.params.lat,
+        lng: req.params.lng
+      },
+      order: [["createdAt", "DESC"]]
+    }).then(function(dbExp) {
+      console.log(dbExp);
+
+      //add identicons to results
+      for (i = 0; i < dbExp.length; i++) {
+        const hash = hasha(dbExp[i].dataValues.UserId, { algorithm: "md5" });
+        var r = Math.floor(Math.random() * 254) + 1;
+        var g = Math.floor(Math.random() * 254) + 1;
+        var b = Math.floor(Math.random() * 254) + 1;
+        var identOptions = {
+          foreground: [r, g, b, 255],
+          background: [255, 255, 255, 255],
+          margin: 0.1,
+          size: 24,
+          format: "png"
+        };
+        var newProperty = "indenticon";
+        var newIdenticon = new Identicon(hash, identOptions).toString();
+        dbExp[i].dataValues[newProperty] = newIdenticon;
+      }
+      res.json(dbExp);
+    });
+  });
+
+  // GET rotue for retrieving expressions in current map view
+  app.get("/api/expression/:latNE/:lngNE/:latSW/:lngSW", function(req, res) {
+    db.Expression.findAll({
+      where: {
+        lat: {
+          [Op.between]: [req.params.latSW, req.params.latNE]
+        },
+        lng: {
+          [Op.between]: [req.params.lngSW, req.params.lngNE]
+        }
       }
     }).then(function(dbExp) {
       res.json(dbExp);
@@ -50,7 +86,9 @@ module.exports = function(app) {
 
     var pin = Math.floor(Math.random() * 8999) + 1000;
 
-    const hash = hasha(username, { algorithm: "md5" });
+    const hash = hasha(username, {
+      algorithm: "md5"
+    });
     console.log(hash);
 
     var r = Math.floor(Math.random() * 254) + 1;

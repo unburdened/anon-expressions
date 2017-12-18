@@ -93,7 +93,6 @@
     <!-- create Modal -->
     <div class="modal fade" id="create" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,12 +121,12 @@
                     <form class="create-form">
                         <div class="form-group">
                             <label for="email">express yourself</label>
-                            <textarea rows="10" cols="30" class="form-control" id="expression" name="msg"></textarea>
+                            <textarea rows="10" cols="30" class="form-control" id="expression-create" name="msg"></textarea>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="accept"> I am not a robot, accecpt your
-                                <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
+                                <input type="checkbox" required name="accept"> I am not a robot, accept the
+                                <a href="terms.html" target="_new">Terms of Service</a> and be pleasant, for the most part.</label>
                         </div>
                         <!-- / row -->
                         <button type="submit" class="btn btn-info" id="submitExpression">Go For It</button>
@@ -149,10 +148,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="modal-title">reply to author</span>
+                    <span class="modal-title">Reply to Author</span>
                 </div>
                 <div class="modal-body">
-                    form jive to appear soon
+                    Direct Messaging Coming Soon.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -187,62 +186,17 @@
         <!-- create Modal -->
         <div class="modal fade" id="view" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <span class="modal-title">expressions</span>
+                        <span class="modal-title">Expressions</span>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-
-                            <div class="col-sm-8">
-                                <!-- timestamp -->
-                                <div class="timestamp">
-                                    9:15 am
-                                    <br /> mon sdec 04 2017
-                                </div>
-                                <!-- / timestamp -->
-                            </div>
-                            <!-- / col-sm-8 -->
-                            <div class="col-sm-4">
-                                <div class="userTag">
-                                    <div class="PIN">1234</div>
-
-                                    <!-- PIN display -->
-                                    <div class="PIN-label">PIN:</div>
-                                    <!-- identicon display - swap out the image in this col-sm-1-->
-                                    <img class="identicon" src="assets/img/identicon-01.png">
-                                </div>
-                                <!-- / col-sm-4 -->
-                            </div>
-                            <!-- / userTag -->
-                        </div>
-                        <!-- / row -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <!-- expression text -->
-                                <hr>
-                                <p>
-                                    so, on my way to school, i was merging onto the 405 from lake forest and i thought i was clear. i wasn’t. to the woman driving
-                                    the white honda accord that swerved to avoid me, i am dreadfully sorry that i nearly
-                                    plowed into you, you had every right to be livid
-                                </p>
-                                <p>
-                                    <br />
-                                </p>
-                                <p>
-                                    <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#reply">reply to author</button>
-                                    <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#addTo">add to expression</button>
-                                </p>
-                            </div>
-                            <!-- / col-lg-12 -->
-                        </div>
-                        <!-- / row -->
+                    <div class="modal-body" id="expression-view">
                     </div>
                     <!-- modal-body -->
                     <div class="modal-footer">
+                        <button type='button' class='btn btn-info' data-dismiss='modal' data-toggle='modal' data-target='#create'>add to expression</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -257,6 +211,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.0/moment-with-locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data.min.js"></script>
     <script src="assets/js/expression.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOha4e-4ZGQgbwEZyBEyx72jFhkF--oGg&callback=initMap"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

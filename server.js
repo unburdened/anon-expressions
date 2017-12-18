@@ -31,11 +31,11 @@ require("./routes/api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-  // seedDatabase();
+  seedDatabase();
 });
 
 function seedDatabase() {
@@ -45,7 +45,7 @@ function seedDatabase() {
   const dwOptions = { language: enEFF, wordcount: 3, format: "string" };
   const loremIpsum = require("lorem-ipsum");
 
-  for (i = 0; i <= 1000; i++) {
+  for (i = 0; i < 100; i++) {
     const tmp = dwGen(dwOptions);
     const username = tmp.replace(/\s+/g, "-");
     const pin = Math.floor(Math.random() * 8999) + 1000;
