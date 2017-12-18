@@ -19,37 +19,21 @@
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
-</head>
-
-
 <body>
-
 
     <div class="container">
         <div class="header">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="logo" src="assets/img/logo.png">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#theStory">the Story</button>
-
-
-
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#userReplies">You have a reply!</button>
                 </div>
                 <!-- / col-lg-12 -->
             </div>
             <!-- / row -->
-
         </div>
         <!-- / header -->
     </div>
-
     <!-- / container -->
     <div id="map"></div>
 
@@ -57,9 +41,9 @@
         <div class="footer">
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#create">create</button>
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#view">view</button>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#welcome">welcome</button>
                     <div class="terms">&#9400; anon.Expressions |
+                        <a href="#theStory" data-toggle="modal" data-target="#theStory">The Story</a> |
                         <a href="terms.html" target="_new">Terms of Service</a>
                     </div>
                 </div>
@@ -79,11 +63,27 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <span class="modal-title">the Story</span>
+                        <span class="modal-title">The Story</span>
                     </div>
                     <div class="modal-body">
-                        <p>Can you belive that these three dudes would make something as sweet as an anonymous, location-based
-                            text / chat application?
+                        <p>
+                            <img src="assets/img/dce.jpg" align="right" alt="UCI Continuing Education" border="0"> It started out with one guy wanting to apologise for nearly causing a horrific accident on the
+                            405 North on his way to class. It morphed into a completely anonymous, location-based posting
+                            / messaging system. In other words, a pretty typical Monday for the UCI coding bootcamp.
+                        </p>
+                        <p>
+                            Brandon, Rudy and Chris, or the Brains, the Braun and the Looks, spent a little over a week designing and coding during class,
+                            in the Anteater Pub in the afternoons and at home in the evenings. The crucial roles of caffiene
+                            and the chicken tenders with fries basket in the project's completion cannot be overstated.
+                        </p>
+                        <p>
+                            The idea behind our third class project is simply to provide a new way for people to connect. Most of what we learned in
+                            the past few months was utilized, from getting what we needed from the Google API to setting
+                            up our data storage. These projects just prepare us for what's next, but anon.Expressions is
+                            our latest.
+                        </p>
+                        <p>
+                            So, enjoy! And please be pleasant, for the most part.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -91,25 +91,7 @@
                     </div>
                 </div>
 
-
             </div>
-            <!-- / row -->
-            <form action="/action_page.php">
-              <div class="form-group">
-                <label for="expression">Express Yourself</label>
-                <textarea rows="10" cols="30" class="form-control" id="expression" placeholder="what do you have to add?" name="expression"></textarea>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accept"> I am not a robot, accecpt your
-                  <a href="terms.html" target="_new">Terms of Service</a> and will be pleasant, for the most part.</label>
-              </div>
-              <button type="submit" class="btn btn-info">Reply</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
         </div>
         <!-- / modal -->
     </div>
@@ -157,90 +139,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">Cancel</button>
-
                 </div>
-                <!-- / userTag -->
-              </div>
             </div>
-            <!-- / row -->
-            <div class="row">
-              <div class="col-lg-12">
-                <!-- expression text -->
-                <hr>
-                <p>
-                  so, on my way to school, i was merging onto the 405 from lake forest and i thought i was clear. i wasn’t. to the woman driving
-                  the white honda accord that swerved to avoid me, i am dreadfully sorry that i nearly plowed into you, you
-                  had every right to be livid
-                </p>
-                <p>
-                  <br />
-                </p>
-                <p>
-                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#reply">reply to author</button>
-                  <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#addTo">add to expression</button>
-                </p>
-              </div>
-              <!-- / col-lg-12 -->
-            </div>
-            <!-- / row -->
-          </div>
-          <!-- modal-body -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+
         </div>
-
-      </div>
-      <!-- / modal -->
-
-    </div>
-  </div>
-  <div>
-    <!-- welcome Modal -->
-    <div class="modal fade" id="welcome" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <span class="modal-title">Welcome to anon.Expressions</span>
-          </div>
-          <div class="modal-body">
-            <p>
-              Thanks for visiting, here's a few tips on getting started.
-            </p>
-            <p>
-              Using a handy Google map, we've made a location-based communication tool. You may also click somewhere on the map to start
-              your own expression.
-            </p>
-            <p>
-              Also, after this page goes away, you'll see a few swanky magenta markers with the letter "a" on it. If you click on one of
-              those markers, a new window will overlay and display an expression from the user that created the marker, along
-              with any additional expressions that have been added.
-            </p>
-            <p>
-              You may also add to any expression. If what you have to communicate is for the author's eyes only, we have a way for you
-              to reply to them.
-            </p>
-            <p>
-              And it's all anonymous. The system just recognizes you as a user and generates any identification necessary internally. Whatever
-              you post will become part of the system, unless the content doesn't make it through our comprehensive filters.
-            </p>
-            <p>
-              As far as content goes, a good guideline to follow would be to just pretend that your name, face and mobile number appears
-              on the expression. Or just think about what you're communicating and how it would affect you if you were the
-              subject.
-            </p>
-            <p>
-              So, enjoy! And please be pleasant, at least until you just can't hold back any longer.
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
         <!-- / modal -->
     </div>
     <!-- reply Modal -->
@@ -303,10 +205,56 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
             <!-- / modal -->
-
+        </div>
+    </div>
+    <div>
+        <!-- welcome Modal -->
+        <div class="modal fade" id="welcome" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <span class="modal-title">Welcome to anon.Expressions</span>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Thanks for visiting, here's a few tips on getting started.
+                        </p>
+                        <p>
+                            Using a handy Google map, we've made a location-based communication tool. You may also click somewhere on the map to start
+                            your own expression.
+                        </p>
+                        <p>
+                            Also, after this page goes away, you'll see a few swanky magenta markers with the letter "a" on it. If you click on one of
+                            those markers, a new window will overlay and display an expression from the user that created
+                            the marker, along with any additional expressions that have been added.
+                        </p>
+                        <p>
+                            You may also add to any expression. If what you have to communicate is for the author's eyes only, we have a way for you
+                            to reply to them.
+                        </p>
+                        <p>
+                            And it's all anonymous. The system just recognizes you as a user and generates any identification necessary internally. Whatever
+                            you post will become part of the system, unless the content doesn't make it through our comprehensive
+                            filters.
+                        </p>
+                        <p>
+                            As far as content goes, a good guideline to follow would be to just pretend that your name, face and mobile number appears
+                            on the expression. Or just think about what you're communicating and how it would affect you
+                            if you were the subject.
+                        </p>
+                        <p>
+                            So, enjoy! And please be pleasant, at least until you just can't hold back any longer.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -319,6 +267,12 @@
     <script src="assets/js/expression.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOha4e-4ZGQgbwEZyBEyx72jFhkF--oGg&callback=initMap"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script type="text/javascript">
+        $(window).ready(function () {
+            $('#welcome').modal('show');
+        });
+    </script>
+
 </body>
 
 </html>
