@@ -189,15 +189,7 @@ $("#view").on("show.bs.modal", function() {
       // console.log(displayTime);
 
       expressionHTML +=
-        "<div class='row'><div class='col-sm-8'><div class='timestamp'>" +
-        displayTime +
-        "</div></div><div class='col-sm-4'><div class='userTag'><div class='PIN'>" +
-        data[i].UserId +
-        "</div><div class='PIN-label'>UN:</div><img class='identicon' src='data:image/png;base64," +
-        data[i].indenticon +
-        "'></div></div></div><div class='row'><div class='col-lg-12'><hr><p>" +
-        data[i].message +
-        "</p><p><br /></p><p><button type='button' class='btn btn-info' data-dismiss='modal' data-toggle='modal' data-target='#reply'>dm user</button></p></div></div>";
+        "<div class='row'><div class='col-sm-8'><div class='businessName'>## business name ##</div></div><div class='col-sm-4'>## ratings ##</div></div><div class='row'><div class='col-sm-4'> ## open / closed ##</div><div class='col-sm-4'>## category ##</div><div class='col-sm-4'></div></row><div class='row'><div class='col-lg-8'><p>## address 1 ## <br>## address 2 ##<br>## address 3 ##</p><p>## phone number ##</p><p><button type='button' class='btn btn-info' data-dismiss='modal' >Get Directions</button></p></div></div>";
     }
 
     $("#expression-view").html(expressionHTML);

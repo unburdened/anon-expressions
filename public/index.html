@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>anon.Expressions</title>
+    <title>Nature Calls</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/1905311c78.css" media="all">
 
     <!-- Latest compiled and minified CSS -->
@@ -24,9 +24,8 @@
     <div class="container">
         <div class="header">
             <div class="row">
-                <div class="col-lg-12">
-                    <img class="logo" src="assets/img/logo.png">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#userReplies">You have a reply!</button>
+                <div class="col-lg-12" align="center">
+                    <img class="logo" src="assets/img/logoNC.png">
                 </div>
                 <!-- / col-lg-12 -->
             </div>
@@ -41,11 +40,6 @@
         <div class="footer">
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#welcome">welcome</button>
-                    <div class="terms">&#9400; anon.Expressions |
-                        <a href="#theStory" data-toggle="modal" data-target="#theStory">The Story</a> |
-                        <a href="terms.html" target="_new">Terms of Service</a>
-                    </div>
                 </div>
                 <!-- / col-lg-12 -->
             </div>
@@ -55,138 +49,7 @@
     </div>
     <!-- need div's bertween modals -->
     <div>
-        <!-- Modal -->
-        <div class="modal fade" id="theStory" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <span class="modal-title">The Story</span>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            <img src="assets/img/dce.jpg" align="right" alt="UCI Continuing Education" border="0"> It started out with one guy wanting to apologise for nearly causing a horrific accident on the
-                            405 North on his way to class. It morphed into a completely anonymous, location-based posting
-                            / messaging system. In other words, a pretty typical Monday for the UCI coding bootcamp.
-                        </p>
-                        <p>
-                            Brandon, Rudy and Chris, or the Brains, the Braun and the Looks, spent a little over a week designing and coding during class,
-                            in the Anteater Pub in the afternoons and at home in the evenings. The crucial roles of caffiene
-                            and the chicken tenders with fries basket in the project's completion cannot be overstated.
-                        </p>
-                        <p>
-                            The idea behind our third class project is simply to provide a new way for people to connect. Most of what we learned in
-                            the past few months was utilized, from getting what we needed from the Google API to setting
-                            up our data storage. These projects just prepare us for what's next, but anon.Expressions is
-                            our latest.
-                        </p>
-                        <p>
-                            So, enjoy! And please be pleasant, for the most part.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- / modal -->
-    </div>
-    <!-- create Modal -->
-    <div class="modal fade" id="create" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="modal-title">create expression</span>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!-- userTag -->
-                            <div class="userTag">
-                                <div class="PIN" id="pin-create"></div>
-                                <!-- PIN display -->
-                                <div class="PIN-label">PIN:</div>
-                                <div class="PIN" id="username-create"></div>
-                                <!-- temp UN -->
-                                <div class="PIN-label">UN:</div>
-                                <!-- identicon display - swap out the image in this col-sm-1-->
-                                <img class="identicon" src="">
-                            </div>
-                            <!-- / userTag -->
-                        </div>
-                        <!-- / col-sm-12 -->
-                    </div>
-                    <!-- / row -->
-                    <form class="create-form">
-                        <div class="form-group">
-                            <label for="email">express yourself</label>
-                            <textarea rows="10" cols="30" class="form-control" id="expression-create" name="msg"></textarea>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" required name="accept"> I am not a robot, accept the
-                                <a href="terms.html" target="_new">Terms of Service</a> and be pleasant, for the most part.</label>
-                        </div>
-                        <!-- / row -->
-                        <button type="submit" class="btn btn-info" id="submitExpression">Go For It</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-
-        </div>
-        <!-- / modal -->
-    </div>
-    <!-- reply Modal -->
-    <div class="modal fade" id="reply" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="modal-title">Reply to Author</span>
-                </div>
-                <div class="modal-body">
-                    Direct Messaging Coming Soon.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-        <!-- / modal -->
-    </div>
-    <!-- add to expression Modal -->
-    <div class="modal fade" id="addTo" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="modal-title">add to expression</span>
-                </div>
-                <div class="modal-body">
-                    form jive to appear soon
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-        <!-- / modal -->
-    </div>
     <div>
         <!-- create Modal -->
         <div class="modal fade" id="view" role="dialog">
@@ -195,13 +58,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <span class="modal-title">Expressions</span>
+                        <span class="modal-title">Restroom Info</span>
                     </div>
                     <div class="modal-body" id="expression-view">
                     </div>
                     <!-- modal-body -->
                     <div class="modal-footer">
-                        <button type='button' class='btn btn-info' data-dismiss='modal' data-toggle='modal' data-target='#create'>add to expression</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -209,54 +71,7 @@
             <!-- / modal -->
         </div>
     </div>
-    <div>
-        <!-- welcome Modal -->
-        <div class="modal fade" id="welcome" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <span class="modal-title">Welcome to anon.Expressions</span>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Thanks for visiting, here's a few tips on getting started.
-                        </p>
-                        <p>
-                            Using a handy Google map, we've made a location-based communication tool. You may also click somewhere on the map to start
-                            your own expression.
-                        </p>
-                        <p>
-                            Also, after this page goes away, you'll see a few swanky magenta markers with the letter "a" on it. If you click on one of
-                            those markers, a new window will overlay and display an expression from the user that created
-                            the marker, along with any additional expressions that have been added.
-                        </p>
-                        <p>
-                            You may also add to any expression. If what you have to communicate is for the author's eyes only, we have a way for you
-                            to reply to them.
-                        </p>
-                        <p>
-                            And it's all anonymous. The system just recognizes you as a user and generates any identification necessary internally. Whatever
-                            you post will become part of the system, unless the content doesn't make it through our comprehensive
-                            filters.
-                        </p>
-                        <p>
-                            As far as content goes, a good guideline to follow would be to just pretend that your name, face and mobile number appears
-                            on the expression. Or just think about what you're communicating and how it would affect you
-                            if you were the subject.
-                        </p>
-                        <p>
-                            So, enjoy! And please be pleasant, at least until you just can't hold back any longer.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -267,11 +82,6 @@
     <script src="assets/js/expression.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOha4e-4ZGQgbwEZyBEyx72jFhkF--oGg&callback=initMap"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script type="text/javascript">
-        $(window).ready(function () {
-            $('#welcome').modal('show');
-        });
-    </script>
 
 </body>
 

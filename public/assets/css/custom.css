@@ -1,3 +1,6 @@
+/* check out line 176 for help seeing the modal structure */
+
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 
@@ -42,9 +45,9 @@ html {
   border-top: 2px solid #bdc3c7;
   border-left: 2px solid #bdc3c7;
   border-right: 2px solid #bdc3c7;
-  background-color: #2c3e50;
+  background-color: #0066cc;
   zoom: 1;
-  min-height: 80px;
+  min-height: 60px;
   padding: 0;
   margin: 4px 0 0 0;
 }
@@ -67,19 +70,23 @@ html {
   background-color: transparent;
 }
 
+.logo {
+  
+}
+
 /* FOOTER CONTROLS */
 
 .footer {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
   border-bottom: 2px solid #bdc3c7;
   border-left: 2px solid #bdc3c7;
   border-right: 2px solid #bdc3c7;
-  background-color: #2c3e50;
+  background-color: #0066cc;
   zoom: 1;
   padding: 0;
   margin: 0;
-  height: 30px;
+  height: 4px;
   vertical-align: bottom;
 }
 
@@ -147,7 +154,7 @@ html {
   border-top: 2px solid #bdc3c7;
   border-left: 2px solid #bdc3c7;
   border-right: 2px solid #bdc3c7;
-  background-color: #2c3e50;
+  background-color: #0066cc;
   border: 2px solid;
 }
 
@@ -165,6 +172,14 @@ html {
   max-height: 80vh;
   overflow-y: auto;
 }
+
+/* turn this on to see green borders within the modal
+
+.modal div {
+  border: 1px solid green;
+}
+*/
+
 
 .close {
   color: #bdc3c7;
@@ -232,6 +247,17 @@ html {
     padding: 0;
     text-align: left;
     margin: 10px 0 0 0;
+}
+
+.businessName {
+  color:  #333333;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  float: left;
+  padding: 0;
+  text-align: left;
+  margin: 10px 0 0 0;
 }
 
 label {
